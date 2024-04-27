@@ -1,0 +1,19 @@
+{
+  "name": "holamundo",
+  "version": "1.0.0",
+  "description": "Ejemplo Hola mundo utilizando NODE JS XDXD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/JefersonYandun/holamundoNODE.git"
+  },
+  "author": "Jeferson Yandun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JefersonYandun/holamundoNODE/issues"
+  },
+  "homepage": "https://github.com/JefersonYandun/holamundoNODE#readme"
+}
