@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/JefersonYandun/holamundoNODE/issues"
   },
-  "homepage": "https://github.com/JefersonYandun/holamundoNODE#readme"
+  "homepage": "https://github.com/JefersonYandun/holamundoNODE#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }
