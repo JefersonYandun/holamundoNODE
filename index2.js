@@ -90,6 +90,33 @@ app.get('/sumar',(req,res)=>{
     
 });
 
+
+//8.-???
+
+
+
+//9.- RETSA SIN PARAMETROS Y JSON
+//url: http:localhost:3000/resta?n11=20&n22=10
+app.get('/resta',(req,res)=>{
+
+    const n1=parseInt(req.query.n11); //N11 Y N22 SON ideitificativos de query algo asi xd
+    const n2=parseInt(req.query.n22);
+    var resul=0;
+
+    if(n1 > n2 ){
+        resul=n1-n2;
+
+    }else{
+        resul=n2-n1;
+
+    }
+    const resultado={total:resul};
+    res.json(resultado);
+
+})
+
+
+
 //SERICIO QUE ESCUCHE EL PUERTO 3000
 app.listen(3000)
 
