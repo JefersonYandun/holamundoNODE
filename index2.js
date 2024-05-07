@@ -113,11 +113,96 @@ app.get('/resta',(req,res)=>{
     const resultado={total:resul};
     res.json(resultado);
 
-})
+});
+
+
+//10. EJERICICO CONEJOS
+//url: http:3000/conejos?p=3&
+
+app.get('/conejos',(req,res)=>{
+
+    var pActual=0,pMuere=0,pTotal=0;
+    //periodo
+    const peri=parseInt(req.query.p);
+    //numero de conejos
+    const nparejas=parseInt(req.query.nPar);
+    //NUMERO DE CRIAS
+    const ncrias=parseInt(req.query.nCri);
+
+    //tasa mortalidad;
+    const tMort=req.query.tMor;
+
+    for(let i=0;i<=peri;i++){
+
+        if(i==0){
+        pActual =nparejas * 2;
+        pMuere =pActual*tMort/100;
+        pTotal=pActual-pMuere;}
+        else{
+        numCrias=nParejas*ncrias;
+        pActual +=nparejas * 2;
+        pMuere =pActual*tMort/100;
+        pTotal=pActual-pMuere;
+        parejas=pTotal/2;
+    }
+    const resultados={pAnual:pActual,
+                        pMorir:pMuere,
+                        pRestante:pTotal,
+                        nParejas:parejas,
+                        nCrias:numCrias};
+
+            res.json(resultados);
+    }
+    
+});
+
+
+//hacerle un json arrays y luego consumir en movil
+
+
+//ejercicio inge
+    
+
+
+//solucion con array
+
+app.get('/conejos', (req, res) => {
+    const peri = parseInt(req.query.p);
+    const nParejas = parseInt(req.query.nPar);
+    const nCrias = parseInt(req.query.nCri);
+    const tMort = parseInt(req.query.tMor);
+
+    const resultados = []; 
+    let pActual = nParejas * 2; // Declaración y asignación inicial
+    let pTotal = pActual;
+    let pMuere = 0; // Inicializa pMuere
+    let parejas = Math.floor(pTotal / 2); // Inicializa parejas con un valor válido
+
+    for (let i = 1; i <= peri; i++) {
+        const numCrias = nParejas * nCrias;
+        pActual += numCrias;
+        pMuere = pActual * (tMort / 100);
+        pTotal = pActual - pMuere;
+        parejas = Math.floor(pTotal / 2); // Aquí puedes calcular el valor de parejas
+
+        const resultadoAnual = {
+            año: i,
+            población: pActual,
+            muertos: pMuere,
+            población_restante: pTotal,
+            parejas: parejas, // Utilización de la variable
+            crías: numCrias
+        };
+
+        resultados.push(resultadoAnual);
+    }
+
+    res.json(resultados);
+});
 
 
 
 //SERICIO QUE ESCUCHE EL PUERTO 3000
-app.listen(3000)
+
 
 //deber la suma de dos paramteros 

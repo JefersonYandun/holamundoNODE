@@ -3,20 +3,39 @@ var http=require('http');
 //CREACIÓN DE UN SERVIDOR USANDO HTTP
 var server=http.createServer();
 
-function mensaje(petic,resp){
-    //Cabecera cuando el estado sea satisfactorio envíe un texto
-    resp.writeHead(200,{'content-type':'text/plain'});
-    //Escribe el mensaje a presentar
-    resp.write("HOLA BIENVENIDO AL MUNDO NODE JS!");
-    //Finaliza el mensaje
-    resp.end();
 
-}
-//Cuando tenga un requerimiento por parte de un Cliente 
-//envíe a presentar la función mensaje
-server.on('request',mensaje);
-//Cada vez que escuche una peticion puerto 3000 y a mostrar 
-//el mensaje en consola
-server.listen(3000,function(){
-    console.log("Se está ejecutando el servidor");
+//solucion con array
+
+app.get('/conejos', (req, res) => {
+    const peri = parseInt(req.query.p);
+    const nParejas = parseInt(req.query.nPar);
+    const nCrias = parseInt(req.query.nCri);
+    const tMort = parseInt(req.query.tMor);
+
+    const resultados = []; 
+    let pActual = nParejas * 2; // Declaración y asignación inicial
+    let pTotal = pActual;
+    let pMuere = 0; // Inicializa pMuere
+    let parejas = Math.floor(pTotal / 2); // Inicializa parejas con un valor válido
+
+    for (let i = 1; i <= peri; i++) {
+        const numCrias = nParejas * nCrias;
+        pActual += numCrias;
+        pMuere = pActual * (tMort / 100);
+        pTotal = pActual - pMuere;
+        parejas = Math.floor(pTotal / 2); // Aquí puedes calcular el valor de parejas
+
+        const resultadoAnual = {
+            año: i,
+            población: pActual,
+            muertos: pMuere,
+            población_restante: pTotal,
+            parejas: parejas, // Utilización de la variable
+            crías: numCrias
+        };
+
+        resultados.push(resultadoAnual);
+    }
+
+    res.json(resultados);
 });
